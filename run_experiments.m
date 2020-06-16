@@ -7,8 +7,8 @@ addpath('utils');
 
 % Obtain Fig. 4 and Fig. 7 of paper for pitch rotation
 % Figures are stored in folder "results"
-[Rrs, Rnrs1, thetas] = one_batch('expbasis_basel17.txt', 'pitch');
-[~, Rnrs2] = one_batch('expbasis_itw.txt', 'pitch');
+[Rrs, Rnrs1, thetas] = one_batch('expbasis_itw.txt', 'pitch');
+%[~, Rnrs2] = one_batch('expbasis_basel17.txt', 'pitch');
 
 % Extra (not in CVPR'20 paper): compute errors in pitch angle estimation (in terms of degrees)
 clf
@@ -17,7 +17,7 @@ for i=1:length(Rrs)
     plot(thetas, mean(Rrs{i}), 'b', 'LineWidth', 3);
     hold on
     plot(thetas, mean(Rnrs1{i}), 'r--', 'LineWidth', 3);
-    plot(thetas, mean(Rnrs2{i}), 'k:', 'LineWidth', 3);
+    %plot(thetas, mean(Rnrs2{i}), 'k:', 'LineWidth', 3);
 
     if i==1
         legend({'No PDM', 'Basel-2017 PDM', 'ITWM PDM'});
@@ -32,18 +32,17 @@ close all
 
 % Obtain Fig. 4 and Fig. 7 of paper for yaw rotation
 % Figures are stored in folder "results"
-[Rrs1, Rnrs1] = one_batch('expbasis_basel17.txt', 'yaw');
-[Rrs2, Rnrs2] = one_batch('expbasis_itw.txt', 'yaw');
+[Rrs1, Rnrs1] = one_batch('expbasis_itw.txt', 'yaw');
+%[Rrs2, Rnrs2] = one_batch('expbasis_basel17.txt', 'yaw');
 
-
-% Extra (not in CVPR'20 paper): compute errors in yaw angle estimation (in terms of degrees)
+% Extra (not included in CVPR'20 paper): compute errors in yaw angle estimation (in terms of degrees)
 clf
 for i=1:length(Rrs)
     subplot(1,length(Rrs),i);
     plot(thetas, mean(Rrs{i}), 'b', 'LineWidth', 3);
     hold on
     plot(thetas, mean(Rnrs1{i}), 'r--', 'LineWidth', 3);
-    plot(thetas, mean(Rnrs2{i}), 'k:', 'LineWidth', 3);
+    %plot(thetas, mean(Rnrs2{i}), 'k:', 'LineWidth', 3);
     if i==1
         legend({'No PDM', 'Basel-2017 PDM', 'ITWM PDM'});
     end
